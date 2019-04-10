@@ -12,8 +12,8 @@ class FileController {
         box.files.push(file);
         await box.save();
 
-        //faz o realtime para todos os usuarios que estao conectados a essa box.
-        req.io.sockets.im(box._id).emit('file', file);
+        //faz o realtime para todos os usuarios que estao conectados a essa box.  
+        req.io.sockets.in(box._id).emit('file', file);
 
         return res.json(file);
     }
